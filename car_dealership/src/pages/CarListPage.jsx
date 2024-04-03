@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import CarList from '../components/car/CarList.jsx'; // Import the CarList component
-import LoadingSpinner from '../components/shared/LoadingSpinner.jsx'; // Import the LoadingSpinner component
-import './CarListPage.css'; // Import the CSS file
+import CarList from '../components/car/CarList.jsx'; 
+import LoadingSpinner from '../components/shared/LoadingSpinner.jsx'; 
+import './CarListPage.css'; 
 
 const CarListPage = () => {
   const [cars, setCars] = useState([]);

@@ -1,0 +1,53 @@
+import React, { useState } from 'react';
+
+const AdminPage = () => {
+  const [formData, setFormData] = useState({
+    make: '',
+    model: '',
+    year: '',
+    price: '',
+    image: '',
+    description: ''
+  });
+
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      // Send formData to your backend API to create a new car entry
+      const response = await fetch('/api/cars', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      if (response.ok) {
+        // Handle success
+        console.log('Car added successfully!');
+      } else {
+        // Handle error
+        console.error('Failed to add car.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Add New Car</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Make:</label>
+        <input type="text" name="make" value={formData.make} onChange={handleChange} />
+        {/* Add input fields for other car details */}
+        <button type="submit">Add Car</button>
+      </form>
+    </div>
+  );
+};
+
+export default AdminPage;
